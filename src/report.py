@@ -93,7 +93,9 @@ def render_markdown(
     lines.append("")
     spoof = [f for f in report.findings
              if f.code in ("ENVELOPE_MISMATCH", "REPLYTO_MISMATCH",
-                           "DISPLAY_NAME_SPOOF", "LOOKALIKE_DOMAIN")]
+                           "REPLYTO_LOCALPART_MISMATCH", "DISPLAY_NAME_SPOOF",
+                           "FREEMAIL_EXEC_IMPERSONATION", "BRAND_IN_DOMAIN",
+                           "LOOKALIKE_DOMAIN")]
     if spoof:
         for f in spoof:
             lines.append(f"- **{f.code}** — {f.reason}")
@@ -108,6 +110,9 @@ def render_markdown(
                               [i for i in report.iocs if i.origin == "sender"]))
     lines.extend(_ioc_section("Body / links",
                               [i for i in report.iocs if i.origin == "body"]))
+    att_iocs = [i for i in report.iocs if i.origin == "attachment"]
+    if att_iocs:
+        lines.extend(_ioc_section("Attachment hashes", att_iocs))
 
     # --- Attachments ---
     lines.append("## Attachments")

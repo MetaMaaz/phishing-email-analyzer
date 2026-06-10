@@ -1,0 +1,22 @@
+Subject: Quick task
+From: "Jane Smith, CEO" <jane.smith.ceo@gmail.com>
+To: victim@example.com
+Date: Wed, 10 Jun 2026 22:31:51 +0000
+Reply-To: jane.smith.payments@gmail.com
+Return-Path: <jane.smith.ceo@gmail.com>
+Authentication-Results: mx.example.com; spf=pass smtp.mailfrom=gmail.com;
+ dkim=pass header.d=gmail.com; dmarc=pass
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com
+ [209.85.220.41]) by mx.example.com; Wed, 10 Jun 2026 22:31:51 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hi,
+
+Are you at your desk? I need you to process an urgent vendor payment before 3=
+pm. It's time-sensitive and confidential =E2=80=94 reply here and I'll send t=
+he bank details.
+
+Sent from my iPhone
+Jane

@@ -10,6 +10,7 @@ falls back to regex so the module works offline with zero extra installs.
 
 from __future__ import annotations
 
+import hashlib
 import re
 from typing import Iterable
 
@@ -21,6 +22,9 @@ from .models import EmailObject, IOC
 _URL_RE = re.compile(r"""(?xi)\b((?:https?|ftp)://[^\s<>"'\)\]]+)""")
 _IPV4_RE = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
 _IPV6_RE = re.compile(r"\b(?:[A-F0-9]{1,4}:){2,7}[A-F0-9]{1,4}\b", re.I)
+# Guard against time-like false positives ("10:30:00"): a real IPv6 written
+# without "::" has 7 colons; anything shorter must contain a hex letter.
+_HEX_LETTER = re.compile(r"[A-F]", re.I)
 _EMAIL_RE = re.compile(r"\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}\b", re.I)
 _DOMAIN_RE = re.compile(
     r"\b(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.)+[a-z]{2,}\b", re.I
@@ -162,7 +166,8 @@ def extract_iocs(email_obj: EmailObject) -> list[IOC]:
         if not ip.startswith(_PRIVATE_IP_PREFIXES) and _valid_ipv4(ip):
             add("ipv4", ip, "body")
     for ip in _IPV6_RE.findall(body):
-        add("ipv6", ip, "body")
+        if ip.count(":") == 7 or _HEX_LETTER.search(ip):
+            add("ipv6", ip, "body")
 
     # Standalone domains in the body (after URLs so URL hosts win the dedupe).
     for dom in _DOMAIN_RE.findall(body):
@@ -174,6 +179,12 @@ def extract_iocs(email_obj: EmailObject) -> list[IOC]:
     for htype, rx in _HASH_RES.items():
         for h in rx.findall(body):
             add(htype, h.lower(), "body")
+
+    # Attachment hashes — these are first-class IOCs (and what VirusTotal
+    # file lookups key on).
+    for att in email_obj.attachments:
+        if att.data:
+            add("sha256", hashlib.sha256(att.data).hexdigest(), "attachment")
 
     return out
 

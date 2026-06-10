@@ -1,0 +1,38 @@
+Subject: Invoice INV-90871 overdue - action required
+From: Accounts Payable <billing@acccounts-payable-portal.com>
+To: victim@example.com
+Date: Wed, 10 Jun 2026 22:31:51 +0000
+Reply-To: billing@acccounts-payable-portal.com
+Return-Path: <bounce@mailer-xyz.ru>
+Authentication-Results: mx.example.com; spf=fail smtp.mailfrom=mailer-xyz.ru;
+ dkim=none; dmarc=fail header.from=acccounts-payable-portal.com
+Received: from mailer-xyz.ru (mailer-xyz.ru [203.0.113.66]) by mx.example.com
+ with ESMTP id ABC123; Wed, 10 Jun 2026 22:31:51 -0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============6691364876723022315=="
+
+--===============6691364876723022315==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Customer,
+
+Your invoice INV-90871 is overdue. Please review the attached PDF and pay imm=
+ediately to avoid a late fee.
+
+View account: http://acccounts-payable-portal.com/pay?id=3D90871
+
+Regards,
+Accounts Payable
+
+--===============6691364876723022315==
+Content-Type: application/pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Invoice_INV-90871.pdf"
+MIME-Version: 1.0
+
+JVBERi0xLjQKMSAwIG9iajw8L1R5cGUvQ2F0YWxvZy9PcGVuQWN0aW9uIDIgMCBSPj5lbmRvYmoK
+MiAwIG9iajw8L1MvSmF2YVNjcmlwdC9KUyhhcHAuYWxlcnRcKCdpbmVydCBzYW1wbGUnXCk7KT4+
+ZW5kb2JqCnRyYWlsZXI8PC9Sb290IDEgMCBSPj4KJSVFT0Y=
+
+--===============6691364876723022315==--

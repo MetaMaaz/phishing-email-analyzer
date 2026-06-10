@@ -1,0 +1,41 @@
+Subject: Salary review document - enable content to view
+From: HR Department <hr@company-hr-portal.net>
+To: victim@example.com
+Date: Wed, 10 Jun 2026 22:31:51 +0000
+Return-Path: <hr@company-hr-portal.net>
+Authentication-Results: mx.example.com; spf=fail; dkim=fail; dmarc=fail
+Received: from smtp.bad-host.tk (smtp.bad-host.tk [192.0.2.155]) by
+ mx.example.com; Wed, 10 Jun 2026 22:31:51 -0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1519310074189578405=="
+
+--===============1519310074189578405==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Please open the attached document and ENABLE CONTENT to view your confidentia=
+l salary review.
+
+HR Department
+
+--===============1519310074189578405==
+Content-Type: application/vnd.ms-word.document.macroEnabled.12
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Salary_Review.docm"
+MIME-Version: 1.0
+
+UEsDBBQAAAAIAPmzylzmuHRrXAAAAGIAAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbBXMTQqAIBBA
+4auE+xxr0SJKL9EFRKYfylGcIer22fLxwZvcE6/mxsJHoll12ihnp+XNyE0V4lntInkE4LBj9KxT
+RqqyphK91CwbZB9OvyH0xgwQEgmStPI/FNgPUEsDBBQAAAAAAAAAIQCaG+utywAAAMsAAAATAAAA
+d29yZC92YmFQcm9qZWN0LmJpbkF0dHJpYnV0ZSBWQl9OYW1lID0gIk1vZHVsZTEiDQpTdWIgQXV0
+b09wZW4oKQ0KICAnIElORVJUIFNBTVBMRSAtIGRvZXMgbm90aGluZywgZm9yIHN0YXRpYy1hbmFs
+eXNpcyB0ZXN0aW5nIG9ubHkNCiAgRGltIHMgQXMgU3RyaW5nDQogIHMgPSAiU2hlbGwiICAnIHN1
+c3BpY2lvdXMta2V5d29yZCBtYXJrZXIsIG5vdCBhIHJlYWwgY2FsbA0KRW5kIFN1Yg0KUEsDBBQA
+AAAIAPmzylxewbVuKwAAADAAAAARAAAAd29yZC9kb2N1bWVudC54bWyzsa/IzVEoSy0qzszPs1Uy
+1DNQsrezSclPLs1NzSuxK07MSSyqtNGHCwAAUEsBAhQDFAAAAAgA+bPKXOa4dGtcAAAAYgAAABMA
+AAAAAAAAAAAAAIABAAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECFAMUAAAAAAAAACEAmhvrrcsA
+AADLAAAAEwAAAAAAAAAAAAAAgAGNAAAAd29yZC92YmFQcm9qZWN0LmJpblBLAQIUAxQAAAAIAPmz
+ylxewbVuKwAAADAAAAARAAAAAAAAAAAAAACAAYkBAAB3b3JkL2RvY3VtZW50LnhtbFBLBQYAAAAA
+AwADAMEAAADjAQAAAAA=
+
+--===============1519310074189578405==--

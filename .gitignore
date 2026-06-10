@@ -1,12 +1,12 @@
 # Secrets
 .env
 
-# Test corpus — never commit real malicious samples to a public repo.
-# The generator IS committed (it builds safe synthetic samples); the generated
-# .eml files and any real samples are not.
-samples/*
-!samples/.gitkeep
-!samples/make_samples.py
+# Sample policy: the committed .eml files are SAFE, fully synthetic samples
+# built by samples/make_samples.py (inert payloads). Never commit real
+# malicious samples — keep those zipped, password-protected, and out of git.
+samples/*.msg
+samples/real_*
+samples/*.zip
 
 # Generated output
 reports/
@@ -17,6 +17,7 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+pytest-cache-files-*/
 .mypy_cache/
 venv/
 .venv/

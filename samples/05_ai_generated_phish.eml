@@ -1,0 +1,27 @@
+Subject: Your recent DocuSign envelope is ready to view
+From: DocuSign <notify@docusign-secure-docs.com>
+To: victim@example.com
+Date: Wed, 10 Jun 2026 22:31:51 +0000
+Reply-To: notify@docusign-secure-docs.com
+Return-Path: <notify@docusign-secure-docs.com>
+Authentication-Results: mx.example.com; spf=pass
+ smtp.mailfrom=docusign-secure-docs.com; dkim=pass
+ header.d=docusign-secure-docs.com; dmarc=pass
+Received: from sendgrid.net (o1.ptr1234.docusign-secure-docs.com
+ [167.89.12.34]) by mx.example.com; Wed, 10 Jun 2026 22:31:51 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Hello,
+
+A new document requires your signature. The envelope was sent to you by your =
+finance team and will expire in 48 hours.
+
+Review and sign securely:
+https://app.docusign-secure-docs.com/sign?env=3D8842
+
+Thank you for using DocuSign. This message was sent to a monitored address; p=
+lease do not reply.
+
+The DocuSign Team

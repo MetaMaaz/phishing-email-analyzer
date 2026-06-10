@@ -214,13 +214,15 @@ def enrich_iocs(
             if vt:
                 ioc.enrichment["virustotal"] = vt
                 if vt.get("malicious", 0) > 0:
+                    is_hash = ioc.type in ("md5", "sha1", "sha256")
                     findings.append(
                         Finding(
-                            "URL_FLAGGED",
+                            "ATTACHMENT_KNOWN_BAD" if is_hash else "URL_FLAGGED",
                             f"{ioc.type} '{ioc.defanged}' flagged malicious by "
                             f"VirusTotal ({vt['malicious']} engines)",
-                            config.weights["URL_FLAGGED"],
-                            [PHISHING, "T1566.002"],
+                            config.weights["ATTACHMENT_KNOWN_BAD"] if is_hash
+                            else config.weights["URL_FLAGGED"],
+                            [PHISHING, "T1566.001" if is_hash else "T1566.002"],
                         )
                     )
         if ioc.type == "url":

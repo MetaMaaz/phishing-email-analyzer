@@ -1,5 +1,10 @@
 # Phishing Email Analyzer
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Analysis](https://img.shields.io/badge/analysis-100%25%20static-orange)
+![Tests](https://img.shields.io/badge/tests-pytest-brightgreen)
+
 A command-line tool that takes a suspicious email, pulls it apart the way a SOC
 analyst would, and writes up a verdict. It checks the authentication headers,
 traces where the mail actually came from, extracts and defangs the indicators
@@ -7,8 +12,27 @@ of compromise, statically inspects any attachments, scores the risk, and saves
 a Markdown report plus a JSON file you can feed into other tooling.
 
 Everything is **static** — no attachment is ever opened, executed, or
-detonated. It runs natively on macOS (or any machine with Python 3.11+) and
+detonated. It runs natively on macOS (or any machine with Python 3.10+) and
 needs no VM.
+
+## Quick start
+
+```bash
+git clone <this-repo> && cd phishing-email-analyzer
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+
+# Analyse the bundled synthetic samples (fully offline)
+python -m src.cli batch samples --no-enrich
+```
+
+```
+[Malicious]  score=85/100   01_fake_invoice.eml
+[Suspicious] score=55/100   02_credential_harvest.eml
+[Malicious]  score=100/100  03_macro_attachment.eml
+[Suspicious] score=35/100   04_bec_ceo_fraud.eml
+[Suspicious] score=30/100   05_ai_generated_phish.eml
+```
 
 ## Why I built it
 
@@ -42,9 +66,9 @@ note, not a black box.
 - Scores the email with tunable, rule-based weights and maps it to a band
   (Low / Suspicious / Malicious).
 - Optionally enriches indicators against VirusTotal, AbuseIPDB and URLhaus, and
-  can hand the whole IOC set to my [ThreatLens](#threatlens-integration)
-  platform. With no API keys configured it skips enrichment and still produces a
-  complete report.
+  can hand the whole IOC set to my ThreatLens platform (see
+  [ThreatLens integration](#threatlens-integration)). With no API keys
+  configured it skips enrichment and still produces a complete report.
 - Maps findings to MITRE ATT&CK and writes Markdown + JSON, single email or a
   whole folder at once.
 
@@ -159,6 +183,7 @@ The score is just the sum of the weights of the findings that fired, capped at
 | Brand name embedded in sending domain | +15 |
 | Lookalike / typosquat domain | +15 |
 | URL or domain flagged (VirusTotal / URLhaus) | +25 each |
+| Attachment hash known-bad (VirusTotal) | +40 |
 | Originating IP flagged (AbuseIPDB ≥ 50%) | +20 |
 | Office macro with auto-execution | +30 |
 | PDF with active/embedded content | +30 |
@@ -198,9 +223,8 @@ and the ATT&CK mapping. These are where the analyst judgement lives.
 
 ## ThreatLens integration
 
-This analyzer is built to feed [ThreatLens](https://github.com/) — my separate
-threat-intelligence platform that collects, enriches, scores and correlates
-IOCs. Set `THREATLENS_BASE_URL` (and optionally `THREATLENS_API_KEY`) in `.env`
+This analyzer is built to feed ThreatLens — my separate threat-intelligence
+platform that collects, enriches, scores and correlates IOCs. Set `THREATLENS_BASE_URL` (and optionally `THREATLENS_API_KEY`) in `.env`
 and every analysed email's extracted indicators are POSTed to ThreatLens for
 deeper correlation against the rest of your intel. The email tool answers "is
 this one message malicious"; ThreatLens answers "have we seen this
@@ -210,10 +234,10 @@ better story than two that don't.
 ## Safety and handling
 
 - Static analysis only. No attachment is opened or executed on the host.
-- Real malicious samples are never committed. `samples/` is gitignored; the repo
-  ships a generator (`samples/make_samples.py`) that builds safe, fully
-  synthetic test emails with inert payloads so anyone can reproduce the case
-  studies. Keep any real samples zipped and password-protected.
+- The committed `.eml` files in `samples/` are **safe, fully synthetic** test
+  emails with inert payloads, built by `samples/make_samples.py` so anyone can
+  reproduce the case studies instantly. Real malicious samples are never
+  committed — keep those zipped, password-protected, and out of git.
 - API keys come from `.env` only — `.env.example` is the template, and `.env` is
   gitignored. Nothing secret is in the code.
 - If you ever want dynamic analysis, detonate inside an isolated VM. That's out
@@ -221,9 +245,19 @@ better story than two that don't.
 
 ## Tech stack
 
-Python 3.11+ · built-in `email` / `hashlib` · `extract-msg` (.msg) ·
+Python 3.10+ · built-in `email` / `hashlib` · `extract-msg` (.msg) ·
 `oletools` (macros) · `iocextract` + `tldextract` (IOCs) · `httpx` (enrichment)
 · stdlib `argparse` (CLI) · `pytest` (tests).
+
+## Tests
+
+```bash
+python -m pytest
+```
+
+Unit tests cover the parser (malformed input included), header/auth analysis,
+IOC extraction and defanging, and the scoring bands. CI runs the suite plus an
+offline smoke-test over all five samples on Python 3.10–3.13.
 
 ## What I learned
 
@@ -235,7 +269,6 @@ mailbox, and you have to score it on behaviour. Building the tool to hand its
 output to ThreatLens made me think about indicators as a pipeline rather than a
 one-off lookup.
 
-```bash
-# Run the tests
-python -m pytest
-```
+## License
+
+MIT — see [LICENSE](LICENSE).
