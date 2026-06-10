@@ -1,0 +1,25 @@
+# Secrets
+.env
+
+# Test corpus — never commit real malicious samples to a public repo
+samples/
+!samples/.gitkeep
+
+# Generated output
+reports/
+!reports/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+venv/
+.venv/
+env/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
