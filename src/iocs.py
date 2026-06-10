@@ -100,8 +100,17 @@ def _extract_urls(text: str) -> list[str]:
     except Exception:
         pass
     urls += _URL_RE.findall(text)
-    # Normalise: strip trailing punctuation.
-    cleaned = [u.rstrip(".,);]>\"'") for u in urls]
+    cleaned = []
+    for u in urls:
+        # Cut at the first character that can't be part of a URL in HTML/text
+        # (handles href="..."> and similar markup leaking into the match).
+        for stop in ('"', "'", "<", ">", " "):
+            idx = u.find(stop)
+            if idx != -1:
+                u = u[:idx]
+        u = u.rstrip(".,);]")  # trailing sentence punctuation
+        if u:
+            cleaned.append(u)
     return cleaned
 
 

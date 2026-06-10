@@ -1,9 +1,12 @@
 # Secrets
 .env
 
-# Test corpus — never commit real malicious samples to a public repo
-samples/
+# Test corpus — never commit real malicious samples to a public repo.
+# The generator IS committed (it builds safe synthetic samples); the generated
+# .eml files and any real samples are not.
+samples/*
 !samples/.gitkeep
+!samples/make_samples.py
 
 # Generated output
 reports/
