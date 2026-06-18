@@ -5,6 +5,25 @@
 ![Analysis](https://img.shields.io/badge/analysis-100%25%20static-orange)
 ![Tests](https://img.shields.io/badge/tests-pytest-brightgreen)
 
+## Live demo
+
+A hosted web version lets anyone paste or upload a suspicious email and get the
+same triage report in the browser — **static analysis only, no link is ever
+fetched and no attachment is ever executed**.
+
+🔗 **Try it:** _add your Streamlit URL here after deploying (see [DEPLOY.md](DEPLOY.md))_
+
+![Demo — analyzing a sample email](docs/assets/demo.gif)
+
+<details>
+<summary>More screenshots</summary>
+
+![Landing page](docs/assets/demo-landing.png)
+
+![Triage report](docs/assets/demo-report.png)
+
+</details>
+
 A command-line tool that takes a suspicious email, pulls it apart the way a SOC
 analyst would, and writes up a verdict. It checks the authentication headers,
 traces where the mail actually came from, extracts and defangs the indicators

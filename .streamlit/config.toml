@@ -1,0 +1,11 @@
+# Streamlit configuration for the hosted phishing-analyzer demo.
+[server]
+# Hard cap on upload size (MB). Emails are tiny; this blocks large payloads.
+maxUploadSize = 2
+# Don't collect usage stats from the demo box.
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+primaryColor = "#cf222e"
