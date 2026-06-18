@@ -11,7 +11,7 @@ A hosted web version lets anyone paste or upload a suspicious email and get the
 same triage report in the browser — **static analysis only, no link is ever
 fetched and no attachment is ever executed**.
 
-🔗 **Try it:** _add your Streamlit URL here after deploying (see [DEPLOY.md](DEPLOY.md))_
+🔗 **Try it live:** **[metamaaz-phishing-analyzer.streamlit.app](https://metamaaz-phishing-analyzer.streamlit.app)** — paste an email or run a bundled sample. (Deploy notes: [DEPLOY.md](DEPLOY.md).)
 
 ![Demo — analyzing a sample email](docs/assets/demo.gif)
 
